@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Pet.Repository.Manager
+﻿namespace Pet.Repository.Manager
 {
     public class TransactionManager : Manager<Transaction>, 
         IReceivable<Transaction>, 

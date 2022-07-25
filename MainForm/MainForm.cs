@@ -62,5 +62,11 @@
         {
             Close();
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AccountForm f = new AccountForm(accounts[comboBox1.SelectedIndex]);
+            f.Show();
+        }
     }
 }
