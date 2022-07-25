@@ -1,0 +1,43 @@
+﻿using Pet.Repository.Connection;
+
+namespace Pet.Repository.Manager
+{
+    public abstract class Manager<T> where T : struct
+    {
+        protected DbConnection connection;
+        protected abstract T ZipEntity(dynamic reader);
+        protected List<T> Fetch(string query)
+        {
+            connection.Open();
+            var reader = connection.Fetch(query);
+            List<T> results = new();
+            while (reader.Read())
+            {
+                results.Add(ZipEntity(reader));
+            }
+            reader.Close();
+            connection.Close();
+            return results;
+        }
+        protected int GetLastRowId()
+        {
+            string query = "SELECT SCOPE_IDENTITY()";
+            var reader = connection.Fetch(query);
+            reader.Read();
+            int lastRowId = (int)(decimal)reader[0];
+            reader.Close();
+            return lastRowId;
+        }
+        public Manager()
+        {
+
+            string? connectionString = Environment.GetEnvironmentVariable("MyDbConnectionString", EnvironmentVariableTarget.User);
+            if (connectionString != null)
+            {
+                connection = new(connectionString);
+                return;
+            }
+            throw new Exception("connection string variable not found");
+        }
+    }
+}
