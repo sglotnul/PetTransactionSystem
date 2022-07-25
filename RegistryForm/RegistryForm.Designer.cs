@@ -31,6 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -58,11 +60,31 @@
             this.textBox1.Size = new System.Drawing.Size(160, 23);
             this.textBox1.TabIndex = 3;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(255, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 15);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "password";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(255, 155);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "username";
+            // 
             // RegistryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -78,5 +100,7 @@
         private Button button1;
         private TextBox textBox2;
         private TextBox textBox1;
+        private Label label2;
+        private Label label1;
     }
 }

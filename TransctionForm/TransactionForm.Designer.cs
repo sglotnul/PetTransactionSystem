@@ -73,11 +73,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(357, 147);
+            this.label2.Location = new System.Drawing.Point(343, 147);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 15);
+            this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 4;
-            this.label2.Text = "account id";
+            this.label2.Text = "to account with id";
             // 
             // TransactionForm
             // 

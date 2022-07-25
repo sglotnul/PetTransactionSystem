@@ -11,7 +11,7 @@
             InitializeComponent();
             this.user = user;
             accountManager = new AccountManager();
-            accounts = new();
+            accounts = new List<Account>();
         }
 
         private void UpdateAccountList()
@@ -53,7 +53,7 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TransactionForm f = new(accounts[comboBox1.SelectedIndex]);
+            TransactionForm f = new TransactionForm(accounts[comboBox1.SelectedIndex]);
             f.FormClosed += delegate { UpdateAccountList(); };
             f.Show();
         }

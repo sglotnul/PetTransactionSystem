@@ -8,7 +8,7 @@ namespace Pet.Repository.Connection
 
         public DbConnection(string connectionString)
         {
-            connection = new(connectionString);
+            connection = new SqlConnection(connectionString);
         }
 
         public void Open() => connection.Open();
@@ -17,7 +17,7 @@ namespace Pet.Repository.Connection
 
         public void Execute(string query)
         {
-            SqlCommand command = new(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
         }
 
@@ -45,7 +45,7 @@ namespace Pet.Repository.Connection
 
         public SqlDataReader Fetch(string query)
         {
-            SqlCommand command = new(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
             return command.ExecuteReader();
         }
     }

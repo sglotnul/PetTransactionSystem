@@ -11,7 +11,7 @@
 
         private bool do_transaction(double sum, int id)
         {
-            AccountManager accountManager = new();
+            AccountManager accountManager = new AccountManager();
             Account? to_account = accountManager.GetById(id);
             if (to_account != null)
             {

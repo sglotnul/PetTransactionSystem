@@ -26,13 +26,13 @@
         public LoginForm()
         {
             InitializeComponent();
-            manager = new();
+            manager = new UserManager();
             ActiveControl = textBox1;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegistryForm f = new();
+            RegistryForm f = new RegistryForm();
             f.Show();
         }
 

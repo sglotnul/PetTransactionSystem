@@ -10,7 +10,7 @@ namespace Pet.Repository.Manager
         {
             connection.Open();
             var reader = connection.Fetch(query);
-            List<T> results = new();
+            List<T> results = new List<T>();
             while (reader.Read())
             {
                 results.Add(ZipEntity(reader));
