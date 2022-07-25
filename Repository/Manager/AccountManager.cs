@@ -43,15 +43,16 @@ namespace Pet.Repository.Manager
             connection.Close();
         }
 
-        public void Transact(Account from_acc, Account to_acc, double sum)
+        public void Transact(int from_acc, int to_acc, double sum)
         {
+            sum = Math.Round(sum, 2);
             CultureInfo culture = new CultureInfo("en-us", false);
             DateTime date = DateTime.Now;
             string[] queries = new[]
             {
-                $"UPDATE accounts SET sum={Math.Round(from_acc.Sum - sum, 2).ToString(culture)} WHERE id={from_acc.Id}",
-                $"UPDATE accounts SET sum={Math.Round(to_acc.Sum + sum, 2).ToString(culture)} WHERE id={to_acc.Id}",
-                $"INSERT INTO transactions (from_account, to_account, sum, date) VALUES ({from_acc.Id}, {to_acc.Id}, {sum.ToString(culture)}, '{date.ToString("yyyy-dd-MM HH:mm:ss")}')"
+                $"UPDATE accounts SET sum=sum-{sum.ToString(culture)} WHERE id={from_acc};",
+                $"UPDATE accounts SET sum=sum+{sum.ToString(culture)} WHERE id={to_acc};",
+                $"INSERT INTO transactions (from_account, to_account, sum, date) VALUES ({from_acc}, {to_acc}, {sum.ToString(culture)}, '{date.ToString("yyyy-dd-MM HH:mm:ss")}');"
             };
             connection.Open();
             connection.ExecuteMany(queries);

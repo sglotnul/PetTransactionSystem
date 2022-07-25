@@ -9,18 +9,6 @@
             from_account = account;
         }
 
-        private bool do_transaction(double sum, int id)
-        {
-            AccountManager accountManager = new AccountManager();
-            Account? to_account = accountManager.GetById(id);
-            if (to_account != null)
-            {
-                accountManager.Transact(from_account, (Account)to_account, sum);
-                return true;
-            }
-            return false;
-        }
-
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(!Char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back) e.Handled = true;
@@ -33,11 +21,13 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AccountManager accountManager = new AccountManager();
             try
             {
-                double sum = Convert.ToDouble(textBox2.Text);
+                double sum = Math.Round(Convert.ToDouble(textBox2.Text), 2);
                 int to_acc = Convert.ToInt32(textBox1.Text);
-                if (sum > from_account.Sum || sum == 0 || !do_transaction(sum, to_acc)) throw new Exception("transaction error");
+                if (to_acc == from_account.Id || sum > from_account.Sum || sum == 0) throw new Exception("transaction error");
+                accountManager.Transact(from_account.Id, to_acc, sum);
                 MessageBox.Show("transaction accepted");
                 Close();
             }
