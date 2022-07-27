@@ -1,4 +1,6 @@
-﻿namespace Pet
+﻿using Pet.Repository;
+
+namespace Pet
 {
     public partial class MainForm : Form
     {
@@ -38,6 +40,7 @@
                 Account acc = accountManager.Insert(new Account(user.Id, 0));
                 accounts.Add(acc);
                 comboBox1.Items.Add(acc.Id);
+                comboBox1.SelectedIndex = 0;
                 MessageBox.Show($"account {acc.Id} created");
             }
             catch 
@@ -53,9 +56,12 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TransactionForm f = new TransactionForm(accounts[comboBox1.SelectedIndex]);
-            f.FormClosed += delegate { UpdateAccountList(); };
-            f.Show();
+            if (comboBox1.SelectedIndex != -1)
+            {
+                TransactionForm f = new TransactionForm(accounts[comboBox1.SelectedIndex]);
+                f.FormClosed += delegate { UpdateAccountList(); };
+                f.Show();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -65,8 +71,11 @@
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AccountForm f = new AccountForm(accounts[comboBox1.SelectedIndex]);
-            f.Show();
+            if(comboBox1.SelectedIndex != -1)
+            {
+                AccountForm f = new AccountForm(accounts[comboBox1.SelectedIndex]);
+                f.Show();
+            }
         }
     }
 }

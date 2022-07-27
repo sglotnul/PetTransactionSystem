@@ -1,2 +1,2 @@
 ﻿global using Pet.Entity;
-global using Pet.Repository.Manager;
+global using Pet.Repository;

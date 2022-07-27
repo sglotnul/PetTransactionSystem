@@ -1,6 +1,6 @@
 ﻿using Pet.Repository.Connection;
 
-namespace Pet.Repository.Manager
+namespace Pet.Repository
 {
     public abstract class Manager<T> where T : struct
     {
@@ -28,6 +28,7 @@ namespace Pet.Repository.Manager
             reader.Close();
             return lastRowId;
         }
+        public abstract T? GetById(int id);
         public Manager()
         {
 

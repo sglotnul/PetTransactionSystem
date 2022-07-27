@@ -1,4 +1,6 @@
-﻿namespace Pet
+﻿using Pet.Repository;
+
+namespace Pet
 {
     public partial class TransactionForm : Form
     {

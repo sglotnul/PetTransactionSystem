@@ -1,13 +1,9 @@
-﻿namespace Pet.Repository.Manager
+﻿namespace Pet.Repository
 {
-    public class UserManager : Manager<User>, 
-        IReceivable<User>, 
-        IInsertable<User>, 
-        IUpdatable<User>, 
-        IDeletable
+    public class UserManager : Manager<User>
     {
         protected override User ZipEntity(dynamic reader) => new User((string)reader["name"], (string)reader["password"]) { Id = (int)reader["id"] };
-        public User? GetById(int id)
+        public override User? GetById(int id)
         {
             List<User> results = Fetch($"SELECT * FROM users WHERE id={id};");
             if (results.Count == 0) return null;
@@ -21,11 +17,6 @@
             return results[0];
         }
 
-        public List<User> GetAll()
-        {
-            return Fetch("SELECT * FROM users;");
-        }
-
         public User Insert(User entity)
         {
             connection.Open();
@@ -34,22 +25,6 @@
             int lastRowId = GetLastRowId();
             connection.Close();
             return entity with { Id = lastRowId };
-        }
-
-        public void Update(int id, User entity)
-        {
-            connection.Open();
-            string query = $"UPDATE users SET name='{entity.Name}', password='{entity.Password}' WHERE id={id}";
-            connection.Execute(query);
-            connection.Close();
-        }
-
-        public void Delete(int id)
-        {
-            connection.Open();
-            string query = $"DELETE FROM users WHERE id={id}";
-            connection.Execute(query);
-            connection.Close();
         }
     }
 }

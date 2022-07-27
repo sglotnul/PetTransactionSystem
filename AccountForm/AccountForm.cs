@@ -1,4 +1,6 @@
-﻿namespace Pet
+﻿using Pet.Repository;
+
+namespace Pet
 {
     public partial class AccountForm : Form
     {
@@ -39,14 +41,14 @@
         {  
             if (radioButton1.Checked)
             {
-                updateListBox(manager.GetByAddresseeId(account.Id), listBox1);
                 listBox2.Hide();
+                updateListBox(manager.GetByAddresseeId(account.Id), listBox1);
                 listBox1.Show();
             }
             else
             {
+                listBox2.Hide();
                 updateListBox(manager.GetBySenderId(account.Id), listBox2);
-                listBox1.Hide();
                 listBox2.Show();
             }
         }
