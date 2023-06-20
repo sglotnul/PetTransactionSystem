@@ -1,0 +1,17 @@
+CREATE TABLE users (
+   id BIGINT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+   name VARCHAR(256) NOT NULL,
+   password VARCHAR(64) NOT NULL
+) 
+
+CREATE TABLE accounts (
+    id BIGINT IDENTITY(1, 1) PRIMARY KEY,
+    owner BIGINT NOT NULL FOREIGN KEY REFERENCES users(id),
+    sum MONEY NOT NULL)
+
+CREATE TABLE transactions (
+      id BIGINT IDENTITY(1, 1) PRIMARY KEY,
+      from_account BIGINT NOT NULL FOREIGN KEY REFERENCES accounts(id),
+      to_account BIGINT NOT NULL FOREIGN KEY REFERENCES accounts(id),
+      sum MONEY NOT NULL,
+      date DATETIME NOT NULL)

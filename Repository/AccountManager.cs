@@ -31,12 +31,13 @@ namespace Pet.Repository
         {
             sum = Math.Round(sum, 2);
             CultureInfo culture = new CultureInfo("en-us", false);
+            culture.NumberFormat.NumberDecimalDigits = 2;
             DateTime date = DateTime.Now;
             string[] queries = new[]
             {
                 $"UPDATE accounts SET sum=sum-{sum.ToString(culture)} WHERE id={from_acc};",
                 $"UPDATE accounts SET sum=sum+{sum.ToString(culture)} WHERE id={to_acc};",
-                $"INSERT INTO transactions (from_account, to_account, sum, date) VALUES ({from_acc}, {to_acc}, {sum.ToString(culture)}, '{date.ToString("yyyy-dd-MM HH:mm:ss")}');"
+                $"INSERT INTO transactions (from_account, to_account, sum, date) VALUES ({from_acc}, {to_acc}, {sum.ToString(culture)}, '{date.ToString("yyyy-MM-dd HH:mm:ss")}');"
             };
             connection.Open();
             connection.ExecuteMany(queries);

@@ -32,7 +32,7 @@ namespace Pet.Repository
         public Manager()
         {
 
-            string? connectionString = Environment.GetEnvironmentVariable("MyDbConnectionString", EnvironmentVariableTarget.User);
+            string? connectionString = Environment.GetEnvironmentVariable("MyDbConnectionString");
             if (connectionString != null)
             {
                 connection = new(connectionString);
